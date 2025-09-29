@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BestPoint: <%= place.title %></title>
-</head>
-<body>
-    <div>
-        <h1><%= place.title %></h1>
-        <p><%= place.description %></p>
-        <p>Location: <%= place.location %></p>
-        <p>Price: <%= place.price %></p>
-        <img src="<%= place.image %>" alt="<%= place.title %>">
+<% layout('layouts/app') %>
+
+<div class="row mb-5">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <img src="<%= place.image %>" alt="<%= place.title %>" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title"><%= place.title %></h5>
+                <p class="card-text"><%= place.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Location: <%= place.location %></li>
+                <li class="list-group-item">Price: <%= place.price %></li>
+            </ul>
+            <div class="card-body">
+                <a href="/places/<%= place._id %>/edit" class="card-link btn btn-warning">Edit</a>
+                <form action="/places/<%= place._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <form action="/places/<%= place._id %>?_method=DELETE" method="POST" style="display:inline;">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/places/<%= place._id %>/edit">Edit</a>
-    <a href="/places/">Back to all places</a>
-</body>
-</html>
+</div>
